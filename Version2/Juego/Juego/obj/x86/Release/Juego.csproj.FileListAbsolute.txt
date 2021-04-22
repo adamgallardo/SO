@@ -1,0 +1,8 @@
+C:\Users\adqui\Desktop\Juego\Juego\bin\Release\Juego.exe
+C:\Users\adqui\Desktop\Juego\Juego\bin\Release\Juego.pdb
+C:\Users\adqui\Desktop\Juego\Juego\obj\x86\Release\Juego.LoginScreen.resources
+C:\Users\adqui\Desktop\Juego\Juego\obj\x86\Release\Juego.Properties.Resources.resources
+C:\Users\adqui\Desktop\Juego\Juego\obj\x86\Release\Juego.csproj.GenerateResource.Cache
+C:\Users\adqui\Desktop\Juego\Juego\obj\x86\Release\Juego.exe
+C:\Users\adqui\Desktop\Juego\Juego\obj\x86\Release\Juego.pdb
+C:\Users\adqui\Desktop\Juego\Juego\obj\x86\Release\Juego.Launcher.resources
