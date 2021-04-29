@@ -1,9 +1,10 @@
-DROP DATABASE IF EXISTS juego;
-CREATE DATABASE juego;
-USE juego;
+DROP DATABASE IF EXISTS bd;
+CREATE DATABASE bd;
+USE bd;
 CREATE TABLE jugador (
    usuario VARCHAR(16) PRIMARY KEY NOT NULL,
-   contrasena  VARCHAR(16) NOT NULL
+   contrasena  VARCHAR(16) NOT NULL,
+   victorias INTEGER NOT NULL
 )ENGINE = InnoDB;
 
 CREATE TABLE partida (
@@ -22,9 +23,9 @@ CREATE TABLE juego (
    FOREIGN KEY (jugador2) REFERENCES jugador(usuario)   
 )ENGINE = InnoDB;
 
-INSERT INTO jugador VALUES('MrCapitan', 'mimara');
-INSERT INTO jugador VALUES('Legyonaryus', 'suppgap');
-INSERT INTO jugador VALUES('Athax', 'si');
+INSERT INTO jugador VALUES('MrCapitan', 'mimara', 1);
+INSERT INTO jugador VALUES('Legyonaryus', 'suppgap', 1);
+INSERT INTO jugador VALUES('Athax', 'si', 1);
 
 INSERT INTO partida VALUES(1, 'Legyonaryus', '2021-03-14', 52);
 INSERT INTO partida VALUES(2, 'MrCapitan', '2021-03-16', 29);

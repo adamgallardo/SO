@@ -6,20 +6,25 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Media;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace Juego
 {
     public partial class Launcher : Form
     {
-        int mX, mY, puerto = 9042;
+        int mX, mY;
         bool mouseDown;
         string mensaje, usuario;
 
-        public void PonerUsuario(string nombre)
+        Socket server;
+
+        public void PrepararForm(string usuario, Socket server)
         {
-            usuario = nombre;
+            this.usuario = usuario;
+            this.server = server;
         }
 
         public Launcher()
@@ -29,18 +34,8 @@ namespace Juego
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Socket server;
-
-            IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, puerto);
-
-            //Creamos el socket.
-            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
             try
             {
-                server.Connect(ipep); //Intentamos conectar el socket.
-
                 if (mayor.Checked)
                 {
                     mensaje = "5/" + textBox1.Text;
@@ -69,7 +64,7 @@ namespace Juego
 
                 MessageBox.Show(mensaje);
             }
-            catch (SocketException)
+            catch (Exception)
             {
                 //Si hay excepcion imprimimos error y salimos del programa con return.
                 MessageBox.Show("No se ha podido conectar con el servidor.");
@@ -109,30 +104,24 @@ namespace Juego
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Socket server;
-
-            IPAddress direc = IPAddress.Parse("192.168.56.102");
-            IPEndPoint ipep = new IPEndPoint(direc, puerto);
-
-            //Creamos el socket.
-            server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
             try
             {
-                server.Connect(ipep); //Intentamos conectar el socket.
-
-                mensaje = "0/" + textBox1.Text;
-
-                //Enviamos al servidor el usuario y la contraseña.
-                byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                // Enviamos al servidor el nombre tecleado para realizar la desconexion
+                byte[] msg = System.Text.Encoding.ASCII.GetBytes("0/");
                 server.Send(msg);
+
+                // Nos desconectamos
+                server.Shutdown(SocketShutdown.Both);
+                server.Close();
+
+                this.Close();
             }
-            catch (SocketException)
+            catch (Exception)
             {
-                //Si hay excepcion imprimimos error y salimos del programa con return.
-                MessageBox.Show("No se ha podido conectar con el servidor.");
+                //Si hay excepcion imprimimos error y salimos del programa con return 
+                MessageBox.Show("Error al cerrar conexion");
                 return;
-            }
+            } 
         }
     }
 }

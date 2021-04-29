@@ -39,6 +39,13 @@
             this.min_Btn = new System.Windows.Forms.Button();
             this.exit_Btn = new System.Windows.Forms.Button();
             this.Enter_Pnl = new System.Windows.Forms.Panel();
+            this.rapida = new System.Windows.Forms.RadioButton();
+            this.ganadas = new System.Windows.Forms.RadioButton();
+            this.ganador = new System.Windows.Forms.RadioButton();
+            this.Lista = new System.Windows.Forms.ListBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.consultar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.Drag_Pnl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eyeS_Pnl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eyeH_Pnl)).BeginInit();
@@ -180,6 +187,81 @@
             this.Enter_Pnl.TabIndex = 11;
             this.Enter_Pnl.Click += new System.EventHandler(this.Enter_Pnl_Click);
             // 
+            // rapida
+            // 
+            this.rapida.AutoSize = true;
+            this.rapida.BackColor = System.Drawing.Color.Transparent;
+            this.rapida.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.rapida.Location = new System.Drawing.Point(1030, 614);
+            this.rapida.Name = "rapida";
+            this.rapida.Size = new System.Drawing.Size(112, 17);
+            this.rapida.TabIndex = 12;
+            this.rapida.TabStop = true;
+            this.rapida.Text = "Partida más rapida";
+            this.rapida.UseVisualStyleBackColor = false;
+            // 
+            // ganadas
+            // 
+            this.ganadas.AutoSize = true;
+            this.ganadas.BackColor = System.Drawing.Color.Transparent;
+            this.ganadas.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ganadas.Location = new System.Drawing.Point(1030, 638);
+            this.ganadas.Name = "ganadas";
+            this.ganadas.Size = new System.Drawing.Size(107, 17);
+            this.ganadas.TabIndex = 13;
+            this.ganadas.TabStop = true;
+            this.ganadas.Text = "Partidas ganadas";
+            this.ganadas.UseVisualStyleBackColor = false;
+            // 
+            // ganador
+            // 
+            this.ganador.AutoSize = true;
+            this.ganador.BackColor = System.Drawing.Color.Transparent;
+            this.ganador.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.ganador.Location = new System.Drawing.Point(1030, 662);
+            this.ganador.Name = "ganador";
+            this.ganador.Size = new System.Drawing.Size(102, 17);
+            this.ganador.TabIndex = 14;
+            this.ganador.TabStop = true;
+            this.ganador.Text = "Dime el ganador";
+            this.ganador.UseVisualStyleBackColor = false;
+            // 
+            // Lista
+            // 
+            this.Lista.FormattingEnabled = true;
+            this.Lista.Location = new System.Drawing.Point(1148, 613);
+            this.Lista.Name = "Lista";
+            this.Lista.Size = new System.Drawing.Size(120, 95);
+            this.Lista.TabIndex = 15;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(1030, 588);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(112, 20);
+            this.textBox1.TabIndex = 16;
+            // 
+            // consultar
+            // 
+            this.consultar.Location = new System.Drawing.Point(1030, 685);
+            this.consultar.Name = "consultar";
+            this.consultar.Size = new System.Drawing.Size(112, 23);
+            this.consultar.TabIndex = 17;
+            this.consultar.Text = "Consultar";
+            this.consultar.UseVisualStyleBackColor = true;
+            this.consultar.Click += new System.EventHandler(this.consultar_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.label1.Location = new System.Drawing.Point(1158, 591);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Lista de conectado";
+            // 
             // LoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -187,6 +269,13 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.consultar);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.Lista);
+            this.Controls.Add(this.ganador);
+            this.Controls.Add(this.ganadas);
+            this.Controls.Add(this.rapida);
             this.Controls.Add(this.Enter_Pnl);
             this.Controls.Add(this.exit_Btn);
             this.Controls.Add(this.min_Btn);
@@ -223,6 +312,13 @@
         private System.Windows.Forms.Button min_Btn;
         private System.Windows.Forms.Button exit_Btn;
         private System.Windows.Forms.Panel Enter_Pnl;
+        private System.Windows.Forms.RadioButton rapida;
+        private System.Windows.Forms.RadioButton ganadas;
+        private System.Windows.Forms.RadioButton ganador;
+        private System.Windows.Forms.ListBox Lista;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button consultar;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -16,3 +16,4 @@ C:\Users\adqui\Desktop\Version-1-Proyecto-SO-master\Version-1-Proyecto-SO-master
 C:\Users\adqui\Desktop\Version-1-Proyecto-SO-master\Version-1-Proyecto-SO-master\Juego\Juego\obj\x86\Debug\Juego.LoginScreen.resources
 C:\Users\adqui\Desktop\Version-1-Proyecto-SO-master\Version-1-Proyecto-SO-master\Juego\Juego\obj\x86\Debug\Juego.Properties.Resources.resources
 C:\Users\adqui\Desktop\Version-1-Proyecto-SO-master\Version-1-Proyecto-SO-master\Juego\Juego\obj\x86\Debug\Juego.csproj.GenerateResource.Cache
+C:\Users\adqui\Desktop\Version-1-Proyecto-SO-master\Version-1-Proyecto-SO-master\Juego\Juego\obj\x86\Debug\Juego.Juego.resources
