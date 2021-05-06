@@ -46,9 +46,11 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.consultar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.Drag_Pnl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eyeS_Pnl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eyeH_Pnl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // Drag_Pnl
@@ -192,7 +194,7 @@
             this.rapida.AutoSize = true;
             this.rapida.BackColor = System.Drawing.Color.Transparent;
             this.rapida.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.rapida.Location = new System.Drawing.Point(1030, 614);
+            this.rapida.Location = new System.Drawing.Point(901, 616);
             this.rapida.Name = "rapida";
             this.rapida.Size = new System.Drawing.Size(112, 17);
             this.rapida.TabIndex = 12;
@@ -205,7 +207,7 @@
             this.ganadas.AutoSize = true;
             this.ganadas.BackColor = System.Drawing.Color.Transparent;
             this.ganadas.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ganadas.Location = new System.Drawing.Point(1030, 638);
+            this.ganadas.Location = new System.Drawing.Point(901, 639);
             this.ganadas.Name = "ganadas";
             this.ganadas.Size = new System.Drawing.Size(107, 17);
             this.ganadas.TabIndex = 13;
@@ -218,7 +220,7 @@
             this.ganador.AutoSize = true;
             this.ganador.BackColor = System.Drawing.Color.Transparent;
             this.ganador.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.ganador.Location = new System.Drawing.Point(1030, 662);
+            this.ganador.Location = new System.Drawing.Point(901, 662);
             this.ganador.Name = "ganador";
             this.ganador.Size = new System.Drawing.Size(102, 17);
             this.ganador.TabIndex = 14;
@@ -229,21 +231,21 @@
             // Lista
             // 
             this.Lista.FormattingEnabled = true;
-            this.Lista.Location = new System.Drawing.Point(1148, 613);
+            this.Lista.Location = new System.Drawing.Point(1148, 149);
             this.Lista.Name = "Lista";
             this.Lista.Size = new System.Drawing.Size(120, 95);
             this.Lista.TabIndex = 15;
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(1030, 588);
+            this.textBox1.Location = new System.Drawing.Point(901, 590);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(112, 20);
             this.textBox1.TabIndex = 16;
             // 
             // consultar
             // 
-            this.consultar.Location = new System.Drawing.Point(1030, 685);
+            this.consultar.Location = new System.Drawing.Point(901, 685);
             this.consultar.Name = "consultar";
             this.consultar.Size = new System.Drawing.Size(112, 23);
             this.consultar.TabIndex = 17;
@@ -256,11 +258,20 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label1.Location = new System.Drawing.Point(1158, 591);
+            this.label1.Location = new System.Drawing.Point(1023, 571);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(98, 13);
             this.label1.TabIndex = 18;
             this.label1.Text = "Lista de conectado";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(1026, 587);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(242, 118);
+            this.dataGridView1.TabIndex = 19;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // LoginScreen
             // 
@@ -269,6 +280,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.consultar);
             this.Controls.Add(this.textBox1);
@@ -295,6 +307,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Drag_Pnl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eyeS_Pnl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.eyeH_Pnl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -319,6 +332,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button consultar;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
 

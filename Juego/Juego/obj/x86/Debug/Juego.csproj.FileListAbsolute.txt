@@ -17,3 +17,6 @@ C:\Users\adqui\Desktop\Version-1-Proyecto-SO-master\Version-1-Proyecto-SO-master
 C:\Users\adqui\Desktop\Version-1-Proyecto-SO-master\Version-1-Proyecto-SO-master\Juego\Juego\obj\x86\Debug\Juego.Properties.Resources.resources
 C:\Users\adqui\Desktop\Version-1-Proyecto-SO-master\Version-1-Proyecto-SO-master\Juego\Juego\obj\x86\Debug\Juego.csproj.GenerateResource.Cache
 C:\Users\adqui\Desktop\Version-1-Proyecto-SO-master\Version-1-Proyecto-SO-master\Juego\Juego\obj\x86\Debug\Juego.Juego.resources
+C:\Users\adqui\Desktop\Juego\Juego\obj\x86\Debug\Juego.Juego.resources
+C:\Users\adqui\Desktop\GitHub\SO\Juego\Juego\obj\x86\Debug\Juego.exe
+C:\Users\adqui\Desktop\GitHub\SO\Juego\Juego\obj\x86\Debug\Juego.pdb

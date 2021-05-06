@@ -34,32 +34,34 @@ void AnadirLista(ListaDeConectados *lista, char usuario[20], int socket)
 
 //Elimina un usuario de la lista de conectados.
 
-void EliminarLista(ListaDeConectados *lista, char usuario[20])
-{	
+int EliminarLista(ListaDeConectados *lista, char usuario[20])
+{
 	int i = 0;
 	int encontrado = 0;
 	
-	while((encontrado == 0) && (lista->num > i))
+	while((lista->num > i) && (encontrado == 0))
 	{
 		if (strcmp(lista->conectados[i].usuario, usuario) == 0)
 		{
-			encontrado = 1;  
+			while(i < lista->num)
+			{
+				lista->conectados[i] = lista->conectados[i+1];
+			}    
+			
+			lista->num--;   
+			encontrado = 1;
+			
+			return 0;
 		}
 		else
 		{
 			i++;
 		}
 	}
-
-	if(encontrado == 1)
+	
+	if(encontrado == 0)
 	{
-		while(i < lista->num)
-		{
-			lista->conectados[i] = lista->conectados[i+1];
-			i++;
-		}    
-		
-		lista->num--; 
+		return 1;
 	}
 }
 
@@ -69,11 +71,28 @@ void DameConectados(ListaDeConectados *lista, char conectados[300])
 {
 	int i = 0;
 	
+	sprintf(conectados, "%d", lista->num);
+	
 	while(i < lista->num)
 	{
-		sprintf(conectados,"%s%s,", conectados, lista->conectados[i].usuario);
+		sprintf(conectados,"%s,%s", conectados, lista->conectados[i].usuario);
 		
 		i++;
+	}
+}
+
+//Funcion que retorna la posicion del usuario deseado.
+
+int DamePosicion(ListaDeConectados *lista, char usuario[20]){
+	
+	int i = 0;
+	
+	while(i < lista->num)
+	{
+		if (strcmp(lista->conectados[i].usuario,usuario) == 0)
+		{
+			return i;
+		}
 	}
 }
 
@@ -133,22 +152,28 @@ void *AtenderCliente (void *socket)
 		printf ("Recibido.\n");
 		
 		//Escribimos el nombre en la consola.
-		printf ("Codigo y peticion: %s.\n", peticion);
+		printf ("Se ha conectado: %s.\n", peticion);
 		
 		char *p = strtok( peticion, "/");
 		
 		int codigo =  atoi (p);
 		
+		int RLD = 0;
+		
 		if (codigo == 0) //Desconectar usuario.
 		{
+			printf("punto 3");
 			pthread_mutex_lock(&mutex);
 			//Eliminamos el usuario de la lista de conectados.
-			EliminarLista(&lista, usuario);
+			terminar = EliminarLista(&lista, usuario);
 			pthread_mutex_unlock(&mutex);
 			
-			printf("%s se ha desconectado.\n", usuario);
+			if(terminar == 0)
+			{
+				RLD = 1;
+			}
 			
-			terminar = 1;
+			printf("%s se ha desconectado.\n", usuario);
 		}
 		else
 		{
@@ -160,6 +185,11 @@ void *AtenderCliente (void *socket)
 				strcpy(contra, p);
 				
 				terminar = IniciarSesion(usuario, contra, respuesta, conn, sock_conn);
+				
+				if(terminar == 0)
+				{
+					RLD = 1;
+				}
 			}
 			
 			else if (codigo == 2) //Registrar usuario.
@@ -173,6 +203,11 @@ void *AtenderCliente (void *socket)
 				printf("Se va a registrar %s con la contrasena %s.\n", usuario, contra);
 				
 				terminar = Registrarse(usuario, contra, respuesta, conn, sock_conn);
+				
+				if(terminar == 0)
+				{
+					RLD = 1;
+				}
 			}
 			
 			else if (codigo == 3) //Partida mas rapida.
@@ -197,37 +232,68 @@ void *AtenderCliente (void *socket)
 				PartidasGanadas(u, respuesta, conn);
 			}
 			
-			if ((codigo == 1) || (codigo == 2) || (codigo == 3) || (codigo == 4) || (codigo == 5))
-			{				
+			else if (codigo == 6) //Invitar a un jugar.
+			{ 
+				char u[20];
+				p = strtok(NULL, "/");
+				strcpy(u, p);
+				
+				printf("%s invita a %s.\n", usuario, u);
+				
+				InvitarJugador(usuario, u, sock_conn);
+			}
+			
+			else if (codigo == 7) //Responder a un jugador.
+			{ 
+				printf("Ahora responderemos la notificacion.\n");;
+				
+				char u[20];
+				p = strtok(NULL, "/");
+				strcpy(u, p);
+				
+				printf("El usuario es %s y ", u);
+				
+				char r[20];
+				p = strtok(NULL, "/");
+				strcpy(r, p);
+				
+				printf("la respuesta es %s.\n", r);
+				
+				RespuestaInvitacion(u, r);
+			}
+			
+			if (codigo == 1 || codigo == 2 || codigo == 3 || codigo == 4 || codigo == 5)
+			{
 				write (sock_conn, respuesta, strlen(respuesta));
 			}
 		}
 		
-		if((codigo == 0) || (codigo == 1) || (codigo == 2))
-		{		
+		if(RLD == 1)
+		{
 			int j;
 			char notificacion[200];
 			char conectados[200];
-			
 			pthread_mutex_lock(&mutex);
 			DameConectados(&lista, conectados);
 			pthread_mutex_unlock(&mutex);
 			
-			printf("%s\n", conectados);
+			printf("Los usuarios conectados son: %s.\n", conectados);
 			
 			sprintf (notificacion, "6/%s", conectados);
 			
-			for(int j = 0; j < lista.num; j++)
+			for(int j=0;j<lista.num;j++)
 			{
 				write (lista.conectados[j].socket, notificacion, strlen(notificacion));
 			}
-		}		
+			
+			RLD = 0;	
+		}
 	}
 	close(sock_conn);
 }
 
-int IniciarSesion(char usuario[20], char contra[20], char respuesta[100], MYSQL *conn, int sock_conn){
-	
+int IniciarSesion(char usuario[20], char contra[20], char respuesta[100], MYSQL *conn, int sock_conn)
+{
 	MYSQL_ROW row;
 	MYSQL_RES *resultado;
 	
@@ -239,7 +305,8 @@ int IniciarSesion(char usuario[20], char contra[20], char respuesta[100], MYSQL 
 	
 	int err = mysql_query (conn, consulta);
 	
-	if (err != 0){
+	if (err != 0)
+	{
 		printf ("Error al consultar la base de datos. %u %s\n", mysql_errno(conn), mysql_error(conn));
 		
 		exit (1);
@@ -248,16 +315,20 @@ int IniciarSesion(char usuario[20], char contra[20], char respuesta[100], MYSQL 
 	resultado = mysql_store_result(conn);
 	row = mysql_fetch_row(resultado);
 	
-	if(row == NULL){
+	if(row == NULL)
+	{
 		sprintf(respuesta, "1/0");
 		return 1;
 	}
-	else{		
+	else
+	{		
 		pthread_mutex_lock(&mutex);
 		AnadirLista(&lista, usuario, sock_conn);
 		pthread_mutex_unlock(&mutex);
 		sprintf(respuesta, "1/1");
 		return 0;
+		
+		//Podriamos hacer que AnadirLista devolviese un valor para saber si esta ya en la lista.
 	}
 }
 
@@ -377,6 +448,45 @@ void PartidasGanadas(char usuario[20], char respuesta[100], MYSQL *conn)
 	}
 }
 
+void InvitarJugador(char usuario[20], char invitado[20])
+{
+	char notificacion[512];
+	
+	pthread_mutex_lock(&mutex);
+	int i = DamePosicion(&lista, invitado);
+	pthread_mutex_unlock(&mutex);
+	
+	sprintf(notificacion, "7/%s", usuario);
+	
+	printf("Vamos a enviar notificacion %s.\n", notificacion);
+	
+	write (lista.conectados[i].socket, notificacion, strlen(notificacion));
+}
+
+void RespuestaInvitacion(char usuario[20], char respuesta[20])
+{
+	char notificacion[512];
+	
+	printf("Vamos a enviar la respuesta de la invitacion.\n");
+	
+	pthread_mutex_lock(&mutex);
+	int i = DamePosicion(&lista, usuario);
+	pthread_mutex_unlock(&mutex);
+	
+	if(strcmp(respuesta, "Si") == 0)
+	{
+		strcpy(notificacion, "8/SolicitudAceptada");
+		
+		printf("Enviamos respuesta %s.\n", notificacion);
+	}
+	else{
+		strcpy(notificacion, "8/SolicitudDenegada");
+		
+		printf("Enviamos respuesta %s.\n", notificacion);
+	}
+	write (lista.conectados[i].socket, notificacion, strlen(notificacion));
+}
+
 int main(int argc, char *argv[])
 {
 	int sock_conn, sock_listen, ret;
@@ -407,7 +517,7 @@ int main(int argc, char *argv[])
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	
 	//Escuchamos en el puerto 9050.
-	serv_adr.sin_port = htons(9013);
+	serv_adr.sin_port = htons(9002);
 	
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0){
 		
@@ -427,7 +537,7 @@ int main(int argc, char *argv[])
 		printf("Escuchando...\n");
 		
 		sock_conn = accept(sock_listen, NULL, NULL);
-		printf("Conexi￳n recibida.\n");
+		printf("Conexion recibida.\n");
 		
 		sockets[i] = sock_conn;
 		

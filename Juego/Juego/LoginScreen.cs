@@ -15,11 +15,11 @@ namespace Juego
 {
     public partial class LoginScreen : Form
     {
-        int mX, mY, aux1, aux2;
+        int mX, mY, aux1, aux2, puerto = 9002;
 
         bool mouseDown = false, loginMODE = true;
 
-        string mensaje;
+        string mensaje, usuario, invitacion;
 
         Socket server;
         Thread atender;
@@ -27,80 +27,138 @@ namespace Juego
         public LoginScreen()
         {
             InitializeComponent();
+
             CheckForIllegalCrossThreadCalls = false;
+
+            dataGridView1.Columns.Add("Usuarios conectados", "Usuarios conectados");
+            dataGridView1.ColumnHeadersVisible = true;
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.Columns["Usuarios conectados"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
         }
 
         private void AtenderServidor()
         {
             while (true)
             {
-                //Recibimos mensaje del servidor.
-                byte[] msg2 = new byte[400];
-                server.Receive(msg2);
-
-                string[] msg = Encoding.ASCII.GetString(msg2).Split('/');
-
-                //MessageBox.Show(trozos[0] + "/" + trozos[1] + "/" + trozos[2]);
-
-                int codigo = Convert.ToInt32(msg[0]); //Tipo de mensaje.
-                string mensaje = msg[1].Split('\0')[0]; //Obtenemos información del mensaje.
-
-                switch (codigo)
+                try
                 {
-                    case 1: //Inicio de sesión.
-                        if (mensaje == "1")
-                        {
-                            MessageBox.Show("Conectado.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error al iniciar sesión.");
-                        }
+                    //Recibimos mensaje del servidor.
+                    byte[] msg2 = new byte[400];
+                    server.Receive(msg2);
 
-                        break;
+                    string[] msg = Encoding.ASCII.GetString(msg2).Split('/');
 
-                    case 2: //Registrar usuario.
-                        if (mensaje == "1")
-                        {
-                            MessageBox.Show("Conectado.");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Error al registrarse.");
-                        }
+                    //MessageBox.Show(trozos[0] + "/" + trozos[1] + "/" + trozos[2]);
 
-                        break;
+                    int codigo = Convert.ToInt32(msg[0]); //Tipo de mensaje.
+                    string mensaje = msg[1].Split('\0')[0]; //Obtenemos información del mensaje.
 
-                    case 3:     //Rapida.
-                        {
-                            MessageBox.Show(mensaje);
-                        }
-                        break;
+                    switch (codigo)
+                    {
+                        case 1: //Inicio de sesión.
+                            if (mensaje == "1")
+                            {
+                                MessageBox.Show("Conectado.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error al iniciar sesión.");
+                            }
 
-                    case 4:     //Ganador.
-                        {
-                            MessageBox.Show(mensaje);
-                        }
-                        break;
+                            break;
 
-                    case 5: //Ganadas.
-                        {
-                            MessageBox.Show(mensaje);
-                        }
-                        break;
+                        case 2: //Registrar usuario.
+                            if (mensaje == "1")
+                            {
+                                MessageBox.Show("Conectado.");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error al registrarse.");
+                            }
 
-                    case 6:     //Actualiza la lista de conectados en el grid
-                        {
-                            Lista.Items.Clear(); ;
-                            Lista.Items.Add(mensaje);
-                        }
-                        break;  
+                            break;
+
+                        case 3: //Rapida.
+                            {
+                                MessageBox.Show(mensaje);
+                            }
+                            break;
+
+                        case 4: //Ganador.
+                            {
+                                MessageBox.Show(mensaje);
+                            }
+                            break;
+
+                        case 5: //Ganadas.
+                            {
+                                MessageBox.Show(mensaje);
+                            }
+                            break;
+
+                        case 6: //Actualiza la lista de conectados en el grid.
+                            {
+                                Conectados(mensaje);
+                            }
+                            break;
+
+                        case 7: //Recibe invitación y prepara respuesta.
+                            {
+                                invitacion = mensaje;
+
+                                DialogResult result1 = MessageBox.Show(invitacion + " te ha enviado una notificación.", "Aceptar invitación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                
+                                if (result1 == DialogResult.Yes)
+                                {
+                                    invitacion = "7/" + usuario + "/Si/";
+                                }  
+                                else
+                                {
+                                    invitacion = "7/" + usuario + "/No/";
+                                }
+
+                                Invitacion();
+                            }
+                            break;
+
+                        case 8: //Recibe respuesta.
+                            {
+                                MessageBox.Show(mensaje);
+                            }
+                            break;
+                    }
                 }
+                catch(Exception)
+                {
+                } 
             }
         }
 
+        public void Invitacion()
+        {
+            MessageBox.Show(invitacion);
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(invitacion);
+            server.Send(msg);
+        }
 
+        public void Conectados(string mensaje)
+        {
+            int i = 0;
 
+            string[] conectados = mensaje.Split(',');
+
+            int Num = Convert.ToInt32(conectados[0]);
+
+            dataGridView1.Rows.Clear();
+
+            while (i < Num)
+            {
+                dataGridView1.Rows.Add(conectados[i + 1]);
+                i++;
+            }
+        }
 
         private void Enter_Pnl_Click(object sender, EventArgs e)
         {
@@ -111,7 +169,7 @@ namespace Juego
             try
             {
                 IPAddress direc = IPAddress.Parse("192.168.56.102");
-                IPEndPoint ipep = new IPEndPoint(direc, 9054);
+                IPEndPoint ipep = new IPEndPoint(direc, puerto);
 
                 //Creamos el socket.
                 server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -126,6 +184,7 @@ namespace Juego
                 if (loginMODE == true)
                 {
                     mensaje = "1/" + user_Tbx.Text + "/" + pass_Tbx.Text;
+                    usuario = user_Tbx.Text;
 
                     //Enviamos al servidor el usuario y la contraseña.
                     byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
@@ -134,6 +193,7 @@ namespace Juego
                 else
                 {
                     mensaje = "2/" + user_Tbx.Text + "/" + pass_Tbx.Text;
+                    usuario = user_Tbx.Text;
 
                     //Enviamos al servidor el usuario y la contraseña.
                     byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
@@ -319,5 +379,29 @@ namespace Juego
                 return cp;
             }
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dataGridView1.CurrentCell.Value != null)
+            {
+                string select = dataGridView1.CurrentCell.Value.ToString(); //Recoge el nombre de la celda.
+
+                if (select == usuario) // Solo permitimos selecionar las que no son el propio usuario.
+                {
+                    MessageBox.Show("No puede seleccionar tu propio usuario.");
+                }
+                else
+                {
+                    MessageBox.Show("Invitación enviada.");
+
+                    mensaje = "6/" + select;
+
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+                    server.Send(msg);
+                }
+            }
+        }
+
+
     }
 }
