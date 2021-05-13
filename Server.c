@@ -96,6 +96,116 @@ int DamePosicion(ListaDeConectados *lista, char usuario[20]){
 	}
 }
 
+/*typedef struct{
+Conectado jugadores[2]; //Lista con los jugadores.
+} Partida;
+#include <stdio.h>
+#include <mysql.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+
+typedef struct{
+char usuario[20];
+int socket;
+} Conectado;
+
+typedef struct{
+Conectado conectados[100];
+int num;
+} ListaDeConectados;
+
+//FUNCIONES PARA LA LISTA DE CONECTADOS.
+
+//Agrega a la lista de conectados un nuevo usuario.
+
+void AnadirLista(ListaDeConectados *lista, char usuario[20], int socket) 
+{
+strcpy (lista->conectados[lista->num].usuario, usuario);
+lista->conectados[lista->num].socket = socket;
+
+printf("Usuario: %s, socket: %d\n", usuario, socket);
+
+lista->num++;
+}
+
+//Elimina un usuario de la lista de conectados.
+
+int EliminarLista(ListaDeConectados *lista, char usuario[20])
+{
+int i = 0;
+int encontrado = 0;
+
+while((lista->num > i) && (encontrado == 0))
+{
+if (strcmp(lista->conectados[i].usuario, usuario) == 0)
+{
+while(i < lista->num)
+{
+lista->conectados[i] = lista->conectados[i+1];
+}    
+
+lista->num--;   
+encontrado = 1;
+
+return 0;
+}
+else
+{
+i++;
+}
+}
+
+if(encontrado == 0)
+{
+return 1;
+}
+}
+
+//Funcion que retorna un string con los usuarios conectados.
+
+void DameConectados(ListaDeConectados *lista, char conectados[300])
+{
+int i = 0;
+
+sprintf(conectados, "%d", lista->num);
+
+while(i < lista->num)
+{
+sprintf(conectados,"%s,%s", conectados, lista->conectados[i].usuario);
+
+i++;
+}
+}
+
+//Funcion que retorna la posicion del usuario deseado.
+
+int DamePosicion(ListaDeConectados *lista, char usuario[20]){
+
+int i = 0;
+
+while(i < lista->num)
+{
+if (strcmp(lista->conectados[i].usuario,usuario) == 0)
+{
+return i;
+}
+}
+}
+
+/*typedef struct{
+Conectado jugadores[2]; //Lista con los jugadores.
+} Partida;
+
+typedef struct{
+Partida partidas[100];
+int numPartidas; //Total de partidas en la tabla.
+}ListaDePartidas;
+*/
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 int i;
@@ -103,6 +213,7 @@ int i;
 int sockets[100]; //Vector de sockets.
 
 ListaDeConectados lista; //Lista de conectados.
+//ListaDePartidas partida; //Lista de partidas.
 
 //Funcion que proporciona atencion al cliente.
 
@@ -125,6 +236,9 @@ void *AtenderCliente (void *socket)
 	
 	char *usuario[20];
 	char *contra[20];
+	
+	int P = 0;
+	char *rival[20];
 	
 	conn = mysql_init(NULL);
 	
@@ -238,6 +352,8 @@ void *AtenderCliente (void *socket)
 				p = strtok(NULL, "/");
 				strcpy(u, p);
 				
+				strcpy(rival, u);
+				
 				printf("%s invita a %s.\n", usuario, u);
 				
 				InvitarJugador(usuario, u, sock_conn);
@@ -245,11 +361,13 @@ void *AtenderCliente (void *socket)
 			
 			else if (codigo == 7) //Responder a un jugador.
 			{ 
-				printf("Ahora responderemos la notificacion.\n");;
+				printf("Ahora responderemos la notificacion.\n");
 				
 				char u[20];
 				p = strtok(NULL, "/");
 				strcpy(u, p);
+				
+				strcpy(rival, u);
 				
 				printf("El usuario es %s y ", u);
 				
@@ -260,6 +378,21 @@ void *AtenderCliente (void *socket)
 				printf("la respuesta es %s.\n", r);
 				
 				RespuestaInvitacion(u, r);
+			}
+			
+			else if (codigo == 9)
+			{
+				int j;
+				
+				char mensaje[200];
+				p = strtok(NULL, "/");
+				sprintf(mensaje, "9/%s", p);
+				
+				
+				for(int j = 0; j<lista.num; j++)
+				{
+					write (lista.conectados[j].socket, mensaje, strlen(mensaje));
+				}
 			}
 			
 			if (codigo == 1 || codigo == 2 || codigo == 3 || codigo == 4 || codigo == 5)
@@ -517,7 +650,7 @@ int main(int argc, char *argv[])
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	
 	//Escuchamos en el puerto 9050.
-	serv_adr.sin_port = htons(9002);
+	serv_adr.sin_port = htons(9010);
 	
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0){
 		

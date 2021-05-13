@@ -47,6 +47,8 @@
             this.consultar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Drag_Pnl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eyeS_Pnl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.eyeH_Pnl)).BeginInit();
@@ -231,9 +233,9 @@
             // Lista
             // 
             this.Lista.FormattingEnabled = true;
-            this.Lista.Location = new System.Drawing.Point(1148, 149);
+            this.Lista.Location = new System.Drawing.Point(1064, 149);
             this.Lista.Name = "Lista";
-            this.Lista.Size = new System.Drawing.Size(120, 95);
+            this.Lista.Size = new System.Drawing.Size(204, 95);
             this.Lista.TabIndex = 15;
             // 
             // textBox1
@@ -273,6 +275,23 @@
             this.dataGridView1.TabIndex = 19;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1217, 250);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(49, 23);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Enviar";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(1064, 250);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(147, 20);
+            this.textBox2.TabIndex = 21;
+            // 
             // LoginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,6 +299,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1280, 720);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.consultar);
@@ -333,6 +354,8 @@
         private System.Windows.Forms.Button consultar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 

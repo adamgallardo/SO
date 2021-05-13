@@ -15,7 +15,7 @@ namespace Juego
 {
     public partial class LoginScreen : Form
     {
-        int mX, mY, aux1, aux2, puerto = 9002;
+        int mX, mY, aux1, aux2, puerto = 9010;
 
         bool mouseDown = false, loginMODE = true;
 
@@ -24,17 +24,24 @@ namespace Juego
         Socket server;
         Thread atender;
 
+        delegate void DelegadoParaEscribir(string mensaje);
+
         public LoginScreen()
         {
             InitializeComponent();
 
-            CheckForIllegalCrossThreadCalls = false;
+            //CheckForIllegalCrossThreadCalls = false;
 
             dataGridView1.Columns.Add("Usuarios conectados", "Usuarios conectados");
             dataGridView1.ColumnHeadersVisible = true;
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.Columns["Usuarios conectados"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        }
+
+        public void ActualizarLista(string mensaje)
+        {
+            Conectados(mensaje);
         }
 
         private void AtenderServidor()
@@ -100,7 +107,9 @@ namespace Juego
 
                         case 6: //Actualiza la lista de conectados en el grid.
                             {
-                                Conectados(mensaje);
+                                //Conectados(mensaje);
+                                DelegadoParaEscribir delegado = new DelegadoParaEscribir(ActualizarLista);
+                                this.Invoke(delegado, new object[] { mensaje });
                             }
                             break;
 
@@ -109,11 +118,11 @@ namespace Juego
                                 invitacion = mensaje;
 
                                 DialogResult result1 = MessageBox.Show(invitacion + " te ha enviado una notificación.", "Aceptar invitación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                                
+
                                 if (result1 == DialogResult.Yes)
                                 {
                                     invitacion = "7/" + usuario + "/Si/";
-                                }  
+                                }
                                 else
                                 {
                                     invitacion = "7/" + usuario + "/No/";
@@ -128,12 +137,23 @@ namespace Juego
                                 MessageBox.Show(mensaje);
                             }
                             break;
+                        case 9: //Recibe respuesta.
+                            {
+                                DelegadoParaEscribir delegado = new DelegadoParaEscribir(Chat);
+                                this.Invoke(delegado, new object[] { mensaje });
+                            }
+                            break;
                     }
                 }
-                catch(Exception)
+                catch (Exception)
                 {
-                } 
+                }
             }
+        }
+
+        public void Chat(string mensaje)
+        {
+            Lista.Items.Add(mensaje);
         }
 
         public void Invitacion()
@@ -177,7 +197,7 @@ namespace Juego
                 server.Connect(ipep); //Intentamos conectar el socket.
 
                 //Ponemos en marcha el Thread.
-                ThreadStart ts = delegate {AtenderServidor();};
+                ThreadStart ts = delegate { AtenderServidor(); };
                 atender = new Thread(ts);
                 atender.Start();
 
@@ -239,7 +259,7 @@ namespace Juego
 
         private void min_Btn_Click(object sender, EventArgs e) //Minimizamos el Form.
         {
-            this.WindowState = FormWindowState.Minimized; 
+            this.WindowState = FormWindowState.Minimized;
         }
 
         private void exit_Btn_Click(object sender, EventArgs e) //Cerramos el Form.
@@ -309,7 +329,7 @@ namespace Juego
 
         private void min_Btn_MouseMove(object sender, MouseEventArgs e)
         {
-            min_Btn.BackColor = Color.FromArgb(226, 226, 226); 
+            min_Btn.BackColor = Color.FromArgb(226, 226, 226);
         }
 
         private void min_Btn_MouseLeave(object sender, EventArgs e)
@@ -402,6 +422,12 @@ namespace Juego
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            mensaje = "9/" + textBox2.Text;
 
+            byte[] msg = System.Text.Encoding.ASCII.GetBytes(mensaje);
+            server.Send(msg);
+        }
     }
 }

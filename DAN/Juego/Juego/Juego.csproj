@@ -52,12 +52,6 @@
     <Compile Include="Juego.Designer.cs">
       <DependentUpon>Juego.cs</DependentUpon>
     </Compile>
-    <Compile Include="Launcher.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Launcher.Designer.cs">
-      <DependentUpon>Launcher.cs</DependentUpon>
-    </Compile>
     <Compile Include="LoginScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,9 +62,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Juego.resx">
       <DependentUpon>Juego.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Launcher.resx">
-      <DependentUpon>Launcher.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginScreen.resx">
       <DependentUpon>LoginScreen.cs</DependentUpon>
