@@ -1,6 +1,6 @@
 # SO
-Versión 4 generada por Adrián Quirós  
+Versión 5 generada por Adrián Quirós  
 
-Versión 4 verificada por Diego Vargas 
+Versión 5 verificada por Diego Vargas 
 
-Versión 4 comunicada por Àdam Gallardo    
+Versión 5 comunicada por Àdam Gallardo    
