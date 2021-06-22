@@ -1,0 +1,45 @@
+C:\Users\adqui\AppData\Local\Temporary Projects\DAN\bin\Debug\DAN.exe
+C:\Users\adqui\AppData\Local\Temporary Projects\DAN\bin\Debug\DAN.pdb
+C:\Users\adqui\AppData\Local\Temporary Projects\DAN\obj\x86\Debug\DAN.Properties.Resources.resources
+C:\Users\adqui\AppData\Local\Temporary Projects\DAN\obj\x86\Debug\DAN.csproj.GenerateResource.Cache
+C:\Users\adqui\AppData\Local\Temporary Projects\DAN\obj\x86\Debug\DAN.exe
+C:\Users\adqui\AppData\Local\Temporary Projects\DAN\obj\x86\Debug\DAN.pdb
+C:\Users\adqui\AppData\Local\Temporary Projects\DAN\obj\x86\Debug\DAN.DAN.resources
+C:\Users\adqui\Desktop\DAN\DAN\obj\x86\Debug\DAN.exe
+C:\Users\adqui\Desktop\DAN\DAN\obj\x86\Debug\DAN.pdb
+C:\Users\adqui\Desktop\DAN\DAN\bin\Debug\DAN.exe
+C:\Users\adqui\Desktop\DAN\DAN\bin\Debug\DAN.pdb
+C:\Users\adqui\Desktop\DAN\DAN\obj\x86\Debug\DAN.DAN.resources
+C:\Users\adqui\Desktop\DAN\DAN\obj\x86\Debug\DAN.Properties.Resources.resources
+C:\Users\adqui\Desktop\DAN\DAN\obj\x86\Debug\DAN.csproj.GenerateResource.Cache
+C:\Users\adqui\Desktop\DAN\DAN\obj\x86\Debug\DAN.csprojResolveAssemblyReference.cache
+C:\Users\adqui\Desktop\DAN\DAN\obj\x86\Debug\DAN.Form2.resources
+C:\Users\adqui\Desktop\Docs\cosas\DAN\DAN\obj\x86\Debug\DAN.exe
+C:\Users\adqui\Desktop\Docs\cosas\DAN\DAN\obj\x86\Debug\DAN.pdb
+C:\Users\adqui\Desktop\Docs\cosas\DAN\DAN\bin\Debug\DAN.exe
+C:\Users\adqui\Desktop\Docs\cosas\DAN\DAN\bin\Debug\DAN.pdb
+C:\Users\adqui\Desktop\Docs\cosas\DAN\DAN\obj\x86\Debug\DAN.csprojResolveAssemblyReference.cache
+C:\Users\adqui\Desktop\Docs\cosas\DAN\DAN\obj\x86\Debug\DAN.DAN.resources
+C:\Users\adqui\Desktop\Docs\cosas\DAN\DAN\obj\x86\Debug\DAN.Form2.resources
+C:\Users\adqui\Desktop\Docs\cosas\DAN\DAN\obj\x86\Debug\DAN.Properties.Resources.resources
+C:\Users\adqui\Desktop\Docs\cosas\DAN\DAN\obj\x86\Debug\DAN.csproj.GenerateResource.Cache
+C:\Users\adqui\Desktop\Juego\DAN\DAN\obj\x86\Debug\DAN.exe
+C:\Users\adqui\Desktop\Juego\DAN\DAN\obj\x86\Debug\DAN.pdb
+C:\Users\adqui\Desktop\Juego\DAN\DAN\bin\Debug\DAN.exe
+C:\Users\adqui\Desktop\Juego\DAN\DAN\bin\Debug\DAN.pdb
+C:\Users\adqui\Desktop\Juego\DAN\DAN\obj\x86\Debug\DAN.csprojResolveAssemblyReference.cache
+C:\Users\adqui\Desktop\Juego\DAN\DAN\obj\x86\Debug\DAN.DAN.resources
+C:\Users\adqui\Desktop\Juego\DAN\DAN\obj\x86\Debug\DAN.Form2.resources
+C:\Users\adqui\Desktop\Juego\DAN\DAN\obj\x86\Debug\DAN.Properties.Resources.resources
+C:\Users\adqui\Desktop\Juego\DAN\DAN\obj\x86\Debug\DAN.csproj.GenerateResource.Cache
+C:\Users\adqui\Desktop\DAN V1.0\DAN V1.0\DAN\DAN\obj\x86\Debug\DAN.exe
+C:\Users\adqui\Desktop\DAN V1.0\DAN V1.0\DAN\DAN\obj\x86\Debug\DAN.pdb
+C:\Users\adqui\Desktop\DAN V1.0\DAN V1.0\DAN\DAN\bin\Debug\DAN.exe
+C:\Users\adqui\Desktop\DAN V1.0\DAN V1.0\DAN\DAN\bin\Debug\DAN.pdb
+C:\Users\adqui\Desktop\DAN V1.0\DAN V1.0\DAN\DAN\obj\x86\Debug\DAN.csprojResolveAssemblyReference.cache
+C:\Users\adqui\Desktop\DAN V1.0\DAN V1.0\DAN\DAN\obj\x86\Debug\DAN.DAN.resources
+C:\Users\adqui\Desktop\DAN V1.0\DAN V1.0\DAN\DAN\obj\x86\Debug\DAN.Form2.resources
+C:\Users\adqui\Desktop\DAN V1.0\DAN V1.0\DAN\DAN\obj\x86\Debug\DAN.Properties.Resources.resources
+C:\Users\adqui\Desktop\DAN V1.0\DAN V1.0\DAN\DAN\obj\x86\Debug\DAN.csproj.GenerateResource.Cache
+C:\Users\adqui\Desktop\Nueva carpeta\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.exe
+C:\Users\adqui\Desktop\Nueva carpeta\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.pdb

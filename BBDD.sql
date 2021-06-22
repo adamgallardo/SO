@@ -10,7 +10,6 @@ CREATE TABLE jugador (
 CREATE TABLE partida (
    ID INTEGER PRIMARY KEY  NOT NULL AUTO_INCREMENT,
    ganador TEXT NOT NULL,
-   fecha DATE NOT NULL,
    duracion INTEGER NOT NULL
 )ENGINE = InnoDB;
 
@@ -27,9 +26,9 @@ INSERT INTO jugador VALUES('MrCapitan', 'mimara', 1);
 INSERT INTO jugador VALUES('Legyonaryus', 'suppgap', 1);
 INSERT INTO jugador VALUES('Athax', 'si', 1);
 
-INSERT INTO partida VALUES(1, 'Legyonaryus', '2021-03-14', 52);
-INSERT INTO partida VALUES(2, 'MrCapitan', '2021-03-16', 29);
-INSERT INTO partida VALUES(3, 'Athax', '2021-03-17', 43);
+INSERT INTO partida VALUES(1, 'Legyonaryus', 52);
+INSERT INTO partida VALUES(2, 'MrCapitan', 29);
+INSERT INTO partida VALUES(3, 'Athax', 43);
 
 
 INSERT INTO juego VALUES(1, 'MrCapitan', 'Legyonaryus');
