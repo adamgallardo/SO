@@ -32,7 +32,7 @@ namespace DAN
         delegate void DelegadoParaMostrarElementos();
         delegate void DelegadorParaEscribir(string mensaje);
 
-        bool mouseDown = false, login = true, consulta = true, invitacion = true, host = true, conectado = false, inGame = false;
+        bool inGame = false, mouseDown = false, login = true, consulta = true, invitacion = true, host = true, conectado = false;
 
         public DAN()
         {
@@ -49,7 +49,7 @@ namespace DAN
                     server.Receive(msg2);
 
                     string[] trozos = Encoding.ASCII.GetString(msg2).Split('/');
-                    
+
                     int codigo = Convert.ToInt32(trozos[0]); //Tipo de mensaje.
                     int idPartida = Convert.ToInt32(trozos[1]); //Obtenemos la id del Form.
                     string mensaje = trozos[2].Split('\0')[0]; //Obtenemos información del mensaje.
@@ -167,7 +167,7 @@ namespace DAN
                 }
             }
         
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         private void PartidaRechaza(string mensaje) //Si se rechaza la partida se muestra un mensaje en una label.
         {
@@ -215,7 +215,7 @@ namespace DAN
              }
          }
 
-        private void consulta_btn_MouseUp(object sender, MouseEventArgs e) //Envía una consulta al servidor.
+        private void consulta_btn_MouseUp(object sender, MouseEventArgs e)
          {
              consulta_btn.Location = new Point(consulta_btn.Location.X, consulta_btn.Location.Y + 3);
 
@@ -236,10 +236,10 @@ namespace DAN
 
         private void disc_btn_MouseUp(object sender, MouseEventArgs e) //BOTÓN DE DESCONEXIÓN.
          {
+             disc_btn.Location = new Point(disc_btn.Location.X, disc_btn.Location.Y + 3);
+
              if (inGame == false)
              {
-                 disc_btn.Location = new Point(disc_btn.Location.X, disc_btn.Location.Y + 3);
-
                  byte[] msg = System.Text.Encoding.ASCII.GetBytes("0/");
                  server.Send(msg);
 
@@ -376,7 +376,7 @@ namespace DAN
             inGame = false;
         }
 
-        private void ErrorIniciarSesion(string mensaje) //Muestra un mensaje de error al iniciar sesión.
+        private void ErrorIniciarSesion(string mensaje)
         {
             error_lbl.Text = mensaje; error_lbl.Show();
         }
@@ -390,7 +390,7 @@ namespace DAN
             panel1_pnl.Location = new Point(480, 291);
             panel2_pnl.Location = new Point(751, 92);
 
-            panel1_pnl.Show(); panel2_pnl.Show(); consulta_btn.Show(); consulta_tbx.Show(); ganadas_rbn.Show(); ganador_rbn.Show(); rapida_rbn.Show(); error_lbl.Hide(); invite_btn.Show(); disc_btn.Show(); data.Show(); eliminarCuenta_btn.Show();
+            borrarC_btn.Show(); panel1_pnl.Show(); panel2_pnl.Show(); consulta_btn.Show(); consulta_tbx.Show(); ganadas_rbn.Show(); ganador_rbn.Show(); rapida_rbn.Show(); error_lbl.Hide(); invite_btn.Show(); disc_btn.Show(); data.Show();
 
             /*data.Columns.Add("Usuarios conectados", "Usuarios conectados"); data.ColumnHeadersVisible = true; data.RowHeadersVisible = false;*/
          }
@@ -399,7 +399,7 @@ namespace DAN
         {
              this.BackgroundImage = System.Drawing.Image.FromFile("Recursos//B1.png");
 
-             panel1_pnl.Hide(); panel2_pnl.Hide(); consulta_btn.Hide(); consulta_tbx.Hide(); ganadas_rbn.Hide(); ganador_rbn.Hide(); rapida_rbn.Hide(); error_lbl.Hide(); invite_btn.Hide(); disc_btn.Hide(); data.Hide(); respuesta_lbl.Hide(); ayudita_pnl.Hide(); invitacion_lbl.Hide(); eliminarCuenta_btn.Hide();
+             borrarC_btn.Hide(); panel1_pnl.Hide(); panel2_pnl.Hide(); consulta_btn.Hide(); consulta_tbx.Hide(); ganadas_rbn.Hide(); ganador_rbn.Hide(); rapida_rbn.Hide(); error_lbl.Hide(); invite_btn.Hide(); disc_btn.Hide(); data.Hide(); respuesta_lbl.Hide(); ayudita_pnl.Hide(); invitacion_lbl.Hide();
 
              usu_tbx.Text = "USUARIO";
              contra_tbx.Text = "CONTRASEÑA";
@@ -415,7 +415,34 @@ namespace DAN
              consulta_tbx.Text = "CONSULTAR";
         }
 
-        private void cerrar_btn_Click(object sender, EventArgs e) //Si le damos al boton X, enviará un mensaje al servidor si no ha habido una desconexión previa.
+        private void borrarC_btn_MouseDown(object sender, MouseEventArgs e)
+        {
+            borrarC_btn.Location = new Point(borrarC_btn.Location.X, borrarC_btn.Location.Y - 3);
+        }
+
+        private void borrarC_btn_MouseUp(object sender, MouseEventArgs e)
+        {
+            borrarC_btn.Location = new Point(borrarC_btn.Location.X, borrarC_btn.Location.Y + 3);
+            
+            if (inGame == false)
+            {
+                DialogResult result1 = MessageBox.Show("¿Seguro que quieres eliminar la cuenta del usuario '" + usuario + "'?", "Eliminar cuenta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result1 == DialogResult.Yes)
+                {
+                    byte[] msg = System.Text.Encoding.ASCII.GetBytes("10/");
+                    server.Send(msg);
+
+                    OcultarContenido();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, antes de desconectarte del cliente, cierra la partida.");
+            }
+        }
+
+        private void cerrar_btn_Click(object sender, EventArgs e)
         {
             if (inGame == false)
             {
@@ -450,16 +477,7 @@ namespace DAN
             }
         }
 
-        //////////////////////////////////////////////////////////////////////////
-
-        //A PARTIR DE AQUÍ HAY PROCEDIMIENTO QUE SE UTILIZAN PARA DEJAR BONITO EL FORM.
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Form2 f2 = new Form2(numForms[0], 0, server, usuario, rival, host);
-
-            f2.ShowDialog();
-        }
+        //FUNCIONES AXULIARES PARA DEJAR EL FORM BONITO.
 
         private void entrar_btn_MouseDown(object sender, MouseEventArgs e)
         {
@@ -745,33 +763,6 @@ namespace DAN
                 CreateParams cp = base.CreateParams;
                 cp.ClassStyle |= 0x20000;
                 return cp;
-            }
-        }
-
-        private void eliminarCuenta_btn_MouseDown(object sender, MouseEventArgs e)
-        {
-            eliminarCuenta_btn.Location = new Point(eliminarCuenta_btn.Location.X, eliminarCuenta_btn.Location.Y - 3);
-        }
-
-        private void eliminarCuenta_btn_MouseUp(object sender, MouseEventArgs e)
-        {
-            if (inGame == false)
-            {
-                eliminarCuenta_btn.Location = new Point(eliminarCuenta_btn.Location.X, eliminarCuenta_btn.Location.Y + 3);
-
-                DialogResult result1 = MessageBox.Show("¿Seguro que quieres eliminar la cuenta del usuario '" + usuario + "'?", "Eliminar cuenta", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result1 == DialogResult.Yes)
-                {
-                    byte[] msg = System.Text.Encoding.ASCII.GetBytes("10/");
-                    server.Send(msg);
-
-                    OcultarContenido();
-                }
-            }
-            else
-            {
-                MessageBox.Show("Por favor, antes de desconectarte del cliente, cierra la partida.");
             }
         }
     }

@@ -277,7 +277,7 @@
         P0Mhp51c5e5qbXgoK32t/9xIuZLKTekdrYlEIpHIGeRyfwENieTi8CZNcAAAAABJRU5ErkJggg==
 </value>
   </data>
-  <data name="eliminarCuenta_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="borrarC_btn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAABGdBTUEAALGPC/xhBQAAAXJJREFUSEvt
         lr0uREEYhk80W1FwAUvit6PZ6HAHW8miVxJqLoBsVDR0xB3oVscl0NFRSPw1ROV4vv0+kzObEzOTXRVP

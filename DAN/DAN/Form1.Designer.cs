@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DAN));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.entrar_btn = new System.Windows.Forms.PictureBox();
             this.usu_tbx = new System.Windows.Forms.TextBox();
             this.contra_tbx = new System.Windows.Forms.TextBox();
@@ -59,10 +59,9 @@
             this.ganadas_rbn = new System.Windows.Forms.RadioButton();
             this.disc_btn = new System.Windows.Forms.PictureBox();
             this.respuesta_lbl = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.ayudita_pnl = new System.Windows.Forms.Panel();
             this.invitacion_lbl = new System.Windows.Forms.Label();
-            this.eliminarCuenta_btn = new System.Windows.Forms.PictureBox();
+            this.borrarC_btn = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.entrar_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.move_pnl)).BeginInit();
             this.panel2_pnl.SuspendLayout();
@@ -74,7 +73,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.invite_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.data)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.disc_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eliminarCuenta_btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.borrarC_btn)).BeginInit();
             this.SuspendLayout();
             // 
             // entrar_btn
@@ -298,33 +297,33 @@
             // 
             // data
             // 
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.data.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.data.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.data.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.data.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.data.BackgroundColor = System.Drawing.Color.White;
             this.data.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.data.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.data.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.data.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.data.ColumnHeadersHeight = 40;
             this.data.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.data.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.data.DefaultCellStyle = dataGridViewCellStyle4;
             this.data.GridColor = System.Drawing.Color.White;
             this.data.Location = new System.Drawing.Point(940, 399);
             this.data.MaximumSize = new System.Drawing.Size(240, 123);
@@ -332,23 +331,23 @@
             this.data.MultiSelect = false;
             this.data.Name = "data";
             this.data.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.data.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.ControlLight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.data.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.data.RowHeadersVisible = false;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.data.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.data.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.data.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.data.Size = new System.Drawing.Size(240, 123);
             this.data.StandardTab = true;
@@ -359,13 +358,13 @@
             // 
             // Column1
             // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.Gainsboro;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.Gainsboro;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.DefaultCellStyle = dataGridViewCellStyle3;
             this.Column1.HeaderText = "USUARIOS CONECTADOS";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
@@ -438,17 +437,6 @@
             this.respuesta_lbl.Text = "Respuesta:";
             this.respuesta_lbl.Visible = false;
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(12, 52);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 23;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // ayudita_pnl
             // 
             this.ayudita_pnl.BackColor = System.Drawing.Color.White;
@@ -471,19 +459,19 @@
             this.invitacion_lbl.Text = "Dale \'click\' a JUGAR para invitar a X.";
             this.invitacion_lbl.Visible = false;
             // 
-            // eliminarCuenta_btn
+            // borrarC_btn
             // 
-            this.eliminarCuenta_btn.BackColor = System.Drawing.Color.Transparent;
-            this.eliminarCuenta_btn.Image = ((System.Drawing.Image)(resources.GetObject("eliminarCuenta_btn.Image")));
-            this.eliminarCuenta_btn.Location = new System.Drawing.Point(50, 642);
-            this.eliminarCuenta_btn.Name = "eliminarCuenta_btn";
-            this.eliminarCuenta_btn.Size = new System.Drawing.Size(27, 27);
-            this.eliminarCuenta_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.eliminarCuenta_btn.TabIndex = 26;
-            this.eliminarCuenta_btn.TabStop = false;
-            this.eliminarCuenta_btn.Visible = false;
-            this.eliminarCuenta_btn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.eliminarCuenta_btn_MouseDown);
-            this.eliminarCuenta_btn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.eliminarCuenta_btn_MouseUp);
+            this.borrarC_btn.BackColor = System.Drawing.Color.Transparent;
+            this.borrarC_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("borrarC_btn.BackgroundImage")));
+            this.borrarC_btn.Location = new System.Drawing.Point(50, 642);
+            this.borrarC_btn.Name = "borrarC_btn";
+            this.borrarC_btn.Size = new System.Drawing.Size(27, 27);
+            this.borrarC_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.borrarC_btn.TabIndex = 26;
+            this.borrarC_btn.TabStop = false;
+            this.borrarC_btn.Visible = false;
+            this.borrarC_btn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.borrarC_btn_MouseDown);
+            this.borrarC_btn.MouseUp += new System.Windows.Forms.MouseEventHandler(this.borrarC_btn_MouseUp);
             // 
             // DAN
             // 
@@ -493,10 +481,9 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.eliminarCuenta_btn);
+            this.Controls.Add(this.borrarC_btn);
             this.Controls.Add(this.invitacion_lbl);
             this.Controls.Add(this.ayudita_pnl);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.respuesta_lbl);
             this.Controls.Add(this.disc_btn);
             this.Controls.Add(this.ganadas_rbn);
@@ -535,7 +522,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.invite_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.data)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.disc_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.eliminarCuenta_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.borrarC_btn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -566,11 +553,10 @@
         private System.Windows.Forms.RadioButton ganadas_rbn;
         private System.Windows.Forms.PictureBox disc_btn;
         private System.Windows.Forms.Label respuesta_lbl;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.Panel ayudita_pnl;
         private System.Windows.Forms.Label invitacion_lbl;
-        private System.Windows.Forms.PictureBox eliminarCuenta_btn;
+        private System.Windows.Forms.PictureBox borrarC_btn;
 
 
     }
