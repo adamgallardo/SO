@@ -277,6 +277,18 @@
         P0Mhp51c5e5qbXgoK32t/9xIuZLKTekdrYlEIpHIGeRyfwENieTi8CZNcAAAAABJRU5ErkJggg==
 </value>
   </data>
+  <data name="eliminarCuenta_btn.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABsAAAAbCAYAAACN1PRVAAAABGdBTUEAALGPC/xhBQAAAXJJREFUSEvt
+        lr0uREEYhk80W1FwAUvit6PZ6HAHW8miVxJqLoBsVDR0xB3oVscl0NFRSPw1ROV4vv0+kzObEzOTXRVP
+        8mRn5nzvO8nuJrvZP0Ke51PYxDN7nbRHvYXiBn5gEdkv2khvoHAIX/AOa9iHs3iPzzhoo/EQquNqiQco
+        nGDx/BSFfSyef1u3ah8eVPE3qNoVPjyQt2ilPdI9y1iz6nIYqOCnTHeB5CtW+TMMyofeDU9WFYbha814
+        rOG2Lh1buK5LjyurCsPwuWY8hnFalw7Zy3knLasKw7B8xTtJuezYqsIwvKsZj5TLdqwqDMObmvFIuWzD
+        qsIwvKQZj5TLGlYVhuF5zXikXDZnVWEYntCMR8pl41YVhuEBzXikXNZvVXEQeNecYwYXdOmQvZwXebOK
+        eAjdatbxgI+6dMhezovcWEU8hC41m8yFVcRDaE+zyTStIh5CI/jajscjfx3KfyxDEBzDI2xFeIijFv1T
+        ZNkXkYFZbbnlUXoAAAAASUVORK5CYII=
+</value>
+  </data>
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAABPAAAAKpCAYAAAAyktIGAAAABGdBTUEAALGPC/xhBQAA/8dJREFUeF7s

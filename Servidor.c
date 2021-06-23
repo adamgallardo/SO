@@ -20,10 +20,11 @@ typedef struct{
 	int num;
 } ListaDeConectados;
 
-/*LISTA DE PARTIDAS.*/
+/*Estructura para la lista de partidas, en la cual se 
+almacenaran los datos de las diferentes partidas.*/
 typedef struct{
 	int id;
-	int socket1; //El jugador numero 1 siempre sera el host(el que invita)
+	int socket1; //El jugador numero 1 siempre sera el host(el que invita).
 	int socket2;
 	char nombre1[20];
 	char nombre2[20];
@@ -48,7 +49,7 @@ ListaDePartidas listaP; /*Lista de partidas.*/
 
 /*FUNCIONES PARA LA LISTA DE CONECTADOS.*/
 
-/*Funcion que aÃ±ade a la lista de conectados un usuario.
+/*Funcion que anade a la lista de conectados un usuario.
 Devuelve -2 si el usuario ya esta en la lista, -1 si la 
 lista esta llena y 0 si se ha introducido correctamente*/
 int AnadirLista (ListaDeConectados *lista, char nombre[20], int socket)
@@ -77,7 +78,7 @@ int AnadirLista (ListaDeConectados *lista, char nombre[20], int socket)
 	return 0;
 }
 
-/*Funcion que elimina un usuario de la lista de conectados, quita el socket de la lista y devuelve 1.*/
+/*Funcion que elimina un usuario de la lista de conectados y devulve un 1, el cual nos servira para actualizar el datagrid del cliente.*/
 int EliminarLista(ListaDeConectados *lista, char nombre[20], int socket)
 {	
 	int i = DamePosicion(lista, nombre);
@@ -198,7 +199,7 @@ void *AtenderCliente (void *socket)
 		{
 			pthread_mutex_lock(&mutex);
 			//Eliminamos el usuario de la lista de conectados.
-			terminar = EliminarLista(&listaC, usuario,sock_conn);
+			terminar = EliminarLista(&listaC, usuario, sock_conn);
 			pthread_mutex_unlock(&mutex);
 			
 			printf("%s se ha desconectado.\n", usuario);
@@ -210,7 +211,7 @@ void *AtenderCliente (void *socket)
 		}
 		else
 		{
-			if (codigo == 1) //Iniciar sesion.
+			if (codigo == 1) //Recibe el usuario y la contrasena, y la enviamos al procedimiento IniciarSesion.
 			{		
 				p = strtok(NULL, "/");
 				strcpy(usuario, p);
@@ -225,7 +226,7 @@ void *AtenderCliente (void *socket)
 				}
 			}
 			
-			else if (codigo == 2) //Registrar usuario.
+			else if (codigo == 2) //Recibe el usuario y la contrasena, y la enviamos al procedimiento Registrarse.
 			{ 
 				p = strtok(NULL, "/");
 				strcpy(usuario, p);
@@ -243,12 +244,12 @@ void *AtenderCliente (void *socket)
 				}
 			}
 			
-			else if (codigo == 3) //Partida mas rapida.
+			else if (codigo == 3) //Consulta de partida mas rapida.
 			{ 
 				PartidaRapida(respuesta, conn);
 			}
 			
-			else if (codigo == 4) //Decir ganador de una partida.
+			else if (codigo == 4) //Consulta de decir ganador de una partida.
 			{ 
 				p = strtok(NULL, "/");
 				int id = atoi(p);
@@ -256,7 +257,7 @@ void *AtenderCliente (void *socket)
 				GanadorPartida(id, respuesta, conn);
 			}
 			
-			else if (codigo == 5) //Quien haya ganado mas partidas.
+			else if (codigo == 5) //Consulta de quien haya ganado mas partidas.
 			{
 				char ganador[20];
 				p = strtok(NULL, "/");
@@ -276,7 +277,7 @@ void *AtenderCliente (void *socket)
 				InvitarJugador(usuario, rival, sock_conn);
 			}
 			
-			else if (codigo == 7) //Responder a un jugador.
+			else if (codigo == 7) //Responder a la invitacion de un jugador.
 			{ 
 				char rival[20];
 				char respuesta[20];
@@ -298,7 +299,7 @@ void *AtenderCliente (void *socket)
 				pthread_mutex_unlock(&mutex);
 			}
 			
-			else if (codigo == 8) //Chat partida.
+			else if (codigo == 8) //Recibe un mensaje del chat y lo procesa para enviarlo al rival y a el mismo.
 			{ 
 				char mensaje1[512];
 				char mensaje2[512];
@@ -325,7 +326,7 @@ void *AtenderCliente (void *socket)
 				write (listaP.partidas[i].socket2, mensaje2, strlen(mensaje2));
 			}
 			
-			else if (codigo == 9) //Hacer jugada
+			else if (codigo == 9) //Recibimos el movimiento de un jugador y lo procesamos por el procedimiento MirarJugada.
 			{
 				int jugada;
 				int i = 0;
@@ -346,12 +347,37 @@ void *AtenderCliente (void *socket)
 				pthread_mutex_unlock(&mutex);
 			}
 			
+			else if (codigo == 10) 
+			{	
+				printf("Vamos a eliminar el usuario: %s.\n", usuario);
+				
+				pthread_mutex_lock(&mutex);
+				//Borramos de la base de datos un usuario.
+				BorrarUsuarioBBDD(usuario, conn);
+				pthread_mutex_unlock(&mutex);
+				
+				pthread_mutex_lock(&mutex);
+				//Eliminamos el usuario de la lista de conectados.
+				int terminar = EliminarLista(&listaC, usuario, sock_conn);
+				pthread_mutex_unlock(&mutex);
+				
+				if(terminar == 1)
+				{
+					RLD = 1;
+				}
+				
+				printf("%d, sdfasfasdasdf\n", RLD);
+			}
+			
 			if (codigo == 1 || codigo == 2 || codigo == 3 || codigo == 4 || codigo == 5)
 			{
 				write (sock_conn, respuesta, strlen(respuesta));
 			}			
 		}
-		if(RLD == 1)
+		
+		/*Si un usuario se ha Registrado, ha hecho Login o Desconectado (RLD), esta variable es 1 
+		y entonces envia una notificacion con la lista de conectados a todos los usuarios.*/
+		if(RLD == 1) 
 		{
 			int i = 0;
 			
@@ -378,7 +404,7 @@ void *AtenderCliente (void *socket)
 	close(sock_conn);
 }
 
-void IniciarSesion(char usuario[20], char contra[20], char respuesta[100], MYSQL *conn, int sock_conn)
+void IniciarSesion(char usuario[20], char contra[20], char respuesta[100], MYSQL *conn, int sock_conn) //Procedimiento para iniciar sesion. Mira en la base de datos si existe el usuario y envia el mensaje necesario al cliente.
 {
 	MYSQL_ROW row;
 	MYSQL_RES *resultado;
@@ -429,7 +455,7 @@ void IniciarSesion(char usuario[20], char contra[20], char respuesta[100], MYSQL
 	}
 }
 
-void Registrarse(char usuario[20], char contra[20], char respuesta[100], MYSQL *conn, int sock_conn)
+void Registrarse(char usuario[20], char contra[20], char respuesta[100], MYSQL *conn, int sock_conn) //Procedimiento para registrarse. Mira en la base de datos si existe el usuario y envia el mensaje necesario al cliente.
 {
 	MYSQL_ROW row;
 	MYSQL_RES *resultado;
@@ -466,7 +492,29 @@ void Registrarse(char usuario[20], char contra[20], char respuesta[100], MYSQL *
 	}
 }
 
-void PartidaRapida(char respuesta[100], MYSQL *conn)
+void BorrarUsuarioBBDD(char usuario[20], MYSQL *conn)
+{
+	MYSQL_ROW row;
+	MYSQL_RES *resultado;
+	
+	char consulta[100];
+	
+	sprintf (consulta, "DELETE FROM jugador WHERE usuario = '%s'", usuario);
+	int err = mysql_query (conn, consulta);
+	
+	if (err!=0)
+	{
+		printf ("Error al introducir datos la base %u %s.\n", mysql_errno(conn), mysql_error(conn));
+	}
+	else
+	{
+		printf("El usuario %s se ha eliminado con exito.\n", usuario);
+	}
+	
+	printf("Ahora eliminaremos dicho usuario de la lista de conectado.\n");
+}
+
+void PartidaRapida(char respuesta[100], MYSQL *conn) //Mira en la base de datos y procesa la consulta.
 {
 	MYSQL_ROW row;
 	MYSQL_RES *resultado;
@@ -494,7 +542,7 @@ void PartidaRapida(char respuesta[100], MYSQL *conn)
 	}
 }
 
-void GanadorPartida(int id, char respuesta[100], MYSQL *conn)
+void GanadorPartida(int id, char respuesta[100], MYSQL *conn) //Mira en la base de datos y procesa la consulta.
 {
 	MYSQL_ROW row;
 	MYSQL_RES *resultado;
@@ -526,7 +574,7 @@ void GanadorPartida(int id, char respuesta[100], MYSQL *conn)
 	}
 }
 
-void PartidasGanadas(char usuario[20], char respuesta[100], MYSQL *conn)
+void PartidasGanadas(char usuario[20], char respuesta[100], MYSQL *conn) //Mira en la base de datos y procesa la consulta.
 {
 	MYSQL_ROW row;
 	MYSQL_RES *resultado;
@@ -558,7 +606,7 @@ void PartidasGanadas(char usuario[20], char respuesta[100], MYSQL *conn)
 	}
 }
 
-void InvitarJugador(char usuario[20], char invitado[20])
+void InvitarJugador(char usuario[20], char invitado[20]) //Procedimiento que envia una notificacion de que un jugador ha sido invitado.
 {
 	char notificacion[512];
 	
@@ -614,7 +662,9 @@ void RespuestaInvitacion(char usuario[20], char rival[20], char respuesta[20], i
 	write (sock_conn, notificacion, strlen(notificacion));
 }
 
-void MirarJugadas(ListaDePartidas *listaP, int idPartida, int jugada, int socket, MYSQL *conn)
+/*Compara las dos jugadas de ambos usuarios con el fin de sumar o restar las balas, vidas... 
+Despues envia una cadena de informacion de la partida al cliente para actualizar el form.*/
+void MirarJugadas(ListaDePartidas *listaP, int idPartida, int jugada, int socket, MYSQL *conn) 
 {
 	char respuesta[512];
 	
@@ -634,14 +684,14 @@ void MirarJugadas(ListaDePartidas *listaP, int idPartida, int jugada, int socket
 		printf("Registramos primera jugada del jugador2: %d.\n", jugada);
 	}
 	
-	if(listaP->partidas[idPartida].jugada1 == 4)
+	if(listaP->partidas[idPartida].jugada1 == 4) //El jugador 1 se ha rendido.
 	{
 		char solucion[512];
 		sprintf(solucion, "11/%d/r", idPartida); //Ganador.
 		write(listaP->partidas[idPartida].socket2, solucion, strlen(solucion));
 	}
 	
-	if(listaP->partidas[idPartida].jugada2 == 4)
+	if(listaP->partidas[idPartida].jugada2 == 4) //El jugador 2 se ha rendido.
 	{
 		char solucion[512];
 		sprintf(solucion, "11/%d/r", idPartida); //Ganador.
@@ -713,6 +763,7 @@ void MirarJugadas(ListaDePartidas *listaP, int idPartida, int jugada, int socket
 		listaP->partidas[idPartida].jugada2 = 0;
 	}
 	
+	//Si la vida de algun jugador ha llegado a 0, terminamos la partida.
 	if((listaP->partidas[idPartida].vida1 == 0) || (listaP->partidas[idPartida].vida2 == 0))
 	{
 		TerminarPartida(listaP->partidas[idPartida].vida1, listaP->partidas[idPartida].vida2, listaP->partidas[idPartida].socket1, listaP->partidas[idPartida].socket2, idPartida, conn);
@@ -746,23 +797,6 @@ void TerminarPartida(int vida1, int vida2, int socket1, int socket2, int idParti
 		write(socket1, respuesta1, strlen(respuesta1));
 		write(socket2, respuesta1, strlen(respuesta1));
 	}
-	
-	/*		MYSQL_ROW row;*/
-	/*		MYSQL_RES *resultado;*/
-	
-	/*		char consulta[100];*/
-	
-	/*		sprintf (consulta, "INSERT INTO partida(ganador, duracion) VALUES('%s', '%d')", contra, 0);*/
-	/*		int err = mysql_query (conn, consulta);*/
-	
-	/*		if (err!=0)*/
-	/*		{*/
-	/*			printf ("Error al introducir datos la base %u %s.\n", mysql_errno(conn), mysql_error(conn));*/
-	/*		}*/
-	/*		else*/
-	/*		{*/
-	
-	/*		}*/
 }
 
 int main(int argc, char *argv[])
@@ -796,7 +830,7 @@ int main(int argc, char *argv[])
 	serv_adr.sin_addr.s_addr = htonl(INADDR_ANY);
 	
 	//Escuchamos en el puerto.
-	serv_adr.sin_port = htons(9000);
+	serv_adr.sin_port = htons(9004);
 	
 	if (bind(sock_listen, (struct sockaddr *) &serv_adr, sizeof(serv_adr)) < 0){
 		

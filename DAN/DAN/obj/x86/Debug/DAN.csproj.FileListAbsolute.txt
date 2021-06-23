@@ -43,3 +43,21 @@ C:\Users\adqui\Desktop\DAN V1.0\DAN V1.0\DAN\DAN\obj\x86\Debug\DAN.Properties.Re
 C:\Users\adqui\Desktop\DAN V1.0\DAN V1.0\DAN\DAN\obj\x86\Debug\DAN.csproj.GenerateResource.Cache
 C:\Users\adqui\Desktop\Nueva carpeta\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.exe
 C:\Users\adqui\Desktop\Nueva carpeta\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.pdb
+C:\Users\adqui\Desktop\DAN V1.1\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.exe
+C:\Users\adqui\Desktop\DAN V1.1\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.pdb
+C:\Users\adqui\Desktop\DAN V1.1\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.csprojResolveAssemblyReference.cache
+C:\Users\adqui\Desktop\DAN V1.1\DAN V1.1\DAN\DAN\bin\Debug\DAN.exe
+C:\Users\adqui\Desktop\DAN V1.1\DAN V1.1\DAN\DAN\bin\Debug\DAN.pdb
+C:\Users\adqui\Desktop\DAN V1.1\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.DAN.resources
+C:\Users\adqui\Desktop\DAN V1.1\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.Form2.resources
+C:\Users\adqui\Desktop\DAN V1.1\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.Properties.Resources.resources
+C:\Users\adqui\Desktop\DAN V1.1\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.csproj.GenerateResource.Cache
+C:\Users\adqui\Desktop\DAN V1.1 - copia\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.exe
+C:\Users\adqui\Desktop\DAN V1.1 - copia\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.pdb
+C:\Users\adqui\Desktop\DAN V1.1 - copia\DAN V1.1\DAN\DAN\bin\Debug\DAN.exe
+C:\Users\adqui\Desktop\DAN V1.1 - copia\DAN V1.1\DAN\DAN\bin\Debug\DAN.pdb
+C:\Users\adqui\Desktop\DAN V1.1 - copia\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.csprojResolveAssemblyReference.cache
+C:\Users\adqui\Desktop\DAN V1.1 - copia\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.DAN.resources
+C:\Users\adqui\Desktop\DAN V1.1 - copia\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.Form2.resources
+C:\Users\adqui\Desktop\DAN V1.1 - copia\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.Properties.Resources.resources
+C:\Users\adqui\Desktop\DAN V1.1 - copia\DAN V1.1\DAN\DAN\obj\x86\Debug\DAN.csproj.GenerateResource.Cache

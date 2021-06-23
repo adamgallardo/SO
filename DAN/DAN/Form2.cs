@@ -44,49 +44,9 @@ namespace DAN
             CheckForIllegalCrossThreadCalls = false;
         }
 
-        //FUNCIONES PARA CUANDO EL RATÓN SE PONE SOBRE UNA CARTA.
 
-        private void c1_MouseLeave(object sender, EventArgs e)
-        {
-            if (onCard == true) { c1.Location = new Point(c1.Location.X, c1.Location.Y + 70); }    
-        }
 
-        private void c1_MouseEnter(object sender, EventArgs e)
-        {
-            if (onCard == true) { c1.Location = new Point(c1.Location.X, c1.Location.Y - 70); }
-        }
-
-        private void c2_MouseEnter(object sender, EventArgs e)
-        {
-            if (onCard == true) { c2.Location = new Point(c2.Location.X, c2.Location.Y - 70); }
-        }
-
-        private void c2_MouseLeave(object sender, EventArgs e)
-        {
-            if (onCard == true) { c2.Location = new Point(c2.Location.X, c2.Location.Y + 70); }
-        }
-
-        private void c3_MouseEnter(object sender, EventArgs e)
-        {
-            if (onCard == true) { c3.Location = new Point(c3.Location.X, c3.Location.Y - 70); }
-        }
-
-        private void c3_MouseLeave(object sender, EventArgs e)
-        {
-            if (onCard == true) { c3.Location = new Point(c3.Location.X, c3.Location.Y + 70); }
-        }
-
-        public void chat(string mensaje)
-        {
-            chat_lbx.Items.Add(mensaje);
-        }
-
-        private void consulta_tbx_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (aux1 == 0) { consulta_tbx.Text = "";  aux1 = 1; }
-        }
-
-        private void c1_MouseClick(object sender, MouseEventArgs e)
+        private void c1_MouseClick(object sender, MouseEventArgs e) //Si le damos a la carta 1, envíamos al servidor que hemos seleccionado dicha carta.
         {
             if (cartaSeleccionada == false)
             {
@@ -110,7 +70,7 @@ namespace DAN
             }
         }
 
-        private void c2_MouseClick(object sender, MouseEventArgs e)
+        private void c2_MouseClick(object sender, MouseEventArgs e) //Si le damos a la carta 1, envíamos al servidor que hemos seleccionado dicha carta.
         {
             if (cartaSeleccionada == false)
             {
@@ -127,7 +87,7 @@ namespace DAN
             }
         }
 
-        private void c3_MouseClick(object sender, MouseEventArgs e)
+        private void c3_MouseClick(object sender, MouseEventArgs e) //Si le damos a la carta 1, envíamos al servidor que hemos seleccionado dicha carta.
         {
             if (cartaSeleccionada == false)
             {
@@ -144,7 +104,7 @@ namespace DAN
             }
         }
 
-        public void jugada(string mensaje) //jugada_rival/vida1/vida2/bala1/
+        public void jugada(string mensaje) //Comparamos ambos movimiento para que suene un sonido acorde a ambas acciones y actualizamos el form.
         {
             string[] trozos = mensaje.Split('-');
 
@@ -197,7 +157,7 @@ namespace DAN
             c3.Location = new Point(760, 475);
         }
 
-        public void conclusion(string mensaje)
+        public void conclusion(string mensaje) //Procedimiento que sirve para finalizar con la partida, mostrando una pantalla final con el resultado.
         {
             OcultarTodosLosComponentes();
 
@@ -235,44 +195,7 @@ namespace DAN
             pFin = true;
         }
 
-        private void cerrar_btn_MouseClick(object sender, MouseEventArgs e)
-        {
-            this.Close();
-            this.Dispose();
-        }
-
-        private void oc_chat_btn_MouseDown(object sender, MouseEventArgs e)
-        {
-            oc_chat_btn.Location = new Point(oc_chat_btn.Location.X, oc_chat_btn.Location.Y - 3);
-        }
-
-        private void oc_chat_btn_MouseUp(object sender, MouseEventArgs e)
-        {
-            oc_chat_btn.Location = new Point(oc_chat_btn.Location.X, oc_chat_btn.Location.Y + 3);
-
-            if (aux2 == 0)
-            {
-                this.BackgroundImage = System.Drawing.Image.FromFile("Recursos//J2.png");
-                oc_chat_btn.BackgroundImage = System.Drawing.Image.FromFile("Recursos//show.png");
-                oc_chat_btn.Location = new Point(oc_chat_btn.Location.X + 407, oc_chat_btn.Location.Y);
-                
-                chat_lbx.Hide(); consulta_tbx.Hide(); enviar_btn.Hide();
-
-                aux2 = 1;
-            }
-            else
-            {
-                this.BackgroundImage = System.Drawing.Image.FromFile("Recursos//J1.png");
-                oc_chat_btn.BackgroundImage = System.Drawing.Image.FromFile("Recursos//hide.png");
-                oc_chat_btn.Location = new Point(oc_chat_btn.Location.X - 407, oc_chat_btn.Location.Y);
-
-                chat_lbx.Show(); consulta_tbx.Show(); enviar_btn.Show();
-
-                aux2 = 0;
-            }  
-        }
-
-        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        private void Form2_FormClosing(object sender, FormClosingEventArgs e) //Si el form se cierra y la partida aún no ha terminado el rival envía rendición.
         {
             if (pFin == false)
             {
@@ -292,7 +215,7 @@ namespace DAN
             enviar_btn.Location = new Point(enviar_btn.Location.X, enviar_btn.Location.Y - 3);
         }
 
-        private void enviar_btn_MouseUp(object sender, MouseEventArgs e)
+        private void enviar_btn_MouseUp(object sender, MouseEventArgs e) //Envíamos el mensaje del chat al servidor.
         {
             enviar_btn.Location = new Point(enviar_btn.Location.X, enviar_btn.Location.Y + 3);
 
@@ -302,6 +225,48 @@ namespace DAN
             consulta_tbx.Text = "ESCRIBE ALGO...";
 
             aux1 = 0;
+        }
+
+        //FUNCIONES PARA CUANDO EL RATÓN SE PONE SOBRE UNA CARTA.
+
+        private void c1_MouseLeave(object sender, EventArgs e)
+        {
+            if (onCard == true) { c1.Location = new Point(c1.Location.X, c1.Location.Y + 70); }
+        }
+
+        private void c1_MouseEnter(object sender, EventArgs e)
+        {
+            if (onCard == true) { c1.Location = new Point(c1.Location.X, c1.Location.Y - 70); }
+        }
+
+        private void c2_MouseEnter(object sender, EventArgs e)
+        {
+            if (onCard == true) { c2.Location = new Point(c2.Location.X, c2.Location.Y - 70); }
+        }
+
+        private void c2_MouseLeave(object sender, EventArgs e)
+        {
+            if (onCard == true) { c2.Location = new Point(c2.Location.X, c2.Location.Y + 70); }
+        }
+
+        private void c3_MouseEnter(object sender, EventArgs e)
+        {
+            if (onCard == true) { c3.Location = new Point(c3.Location.X, c3.Location.Y - 70); }
+        }
+
+        private void c3_MouseLeave(object sender, EventArgs e)
+        {
+            if (onCard == true) { c3.Location = new Point(c3.Location.X, c3.Location.Y + 70); }
+        }
+
+        public void chat(string mensaje)
+        {
+            chat_lbx.Items.Add(mensaje);
+        }
+
+        private void consulta_tbx_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (aux1 == 0) { consulta_tbx.Text = ""; aux1 = 1; }
         }
 
         private void move_pnl_MouseDown(object sender, MouseEventArgs e)
@@ -350,6 +315,43 @@ namespace DAN
 
                 this.Close();
                 this.Dispose();
+            }
+        }
+
+        private void cerrar_btn_MouseClick(object sender, MouseEventArgs e)
+        {
+            this.Close();
+            this.Dispose();
+        }
+
+        private void oc_chat_btn_MouseDown(object sender, MouseEventArgs e)
+        {
+            oc_chat_btn.Location = new Point(oc_chat_btn.Location.X, oc_chat_btn.Location.Y - 3);
+        }
+
+        private void oc_chat_btn_MouseUp(object sender, MouseEventArgs e)
+        {
+            oc_chat_btn.Location = new Point(oc_chat_btn.Location.X, oc_chat_btn.Location.Y + 3);
+
+            if (aux2 == 0)
+            {
+                this.BackgroundImage = System.Drawing.Image.FromFile("Recursos//J2.png");
+                oc_chat_btn.BackgroundImage = System.Drawing.Image.FromFile("Recursos//show.png");
+                oc_chat_btn.Location = new Point(oc_chat_btn.Location.X + 407, oc_chat_btn.Location.Y);
+
+                chat_lbx.Hide(); consulta_tbx.Hide(); enviar_btn.Hide();
+
+                aux2 = 1;
+            }
+            else
+            {
+                this.BackgroundImage = System.Drawing.Image.FromFile("Recursos//J1.png");
+                oc_chat_btn.BackgroundImage = System.Drawing.Image.FromFile("Recursos//hide.png");
+                oc_chat_btn.Location = new Point(oc_chat_btn.Location.X - 407, oc_chat_btn.Location.Y);
+
+                chat_lbx.Show(); consulta_tbx.Show(); enviar_btn.Show();
+
+                aux2 = 0;
             }
         }
 
