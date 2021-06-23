@@ -1,6 +1,6 @@
 # SO
-Versión final generada por Diego Vargas
+Versión final generada por Adrián Quirós     
 
 Versión final verificada por Àdam Gallardo 
 
-Versión final comunicada por Adrián Quirós     
+Versión final comunicada por Diego Vargas    
